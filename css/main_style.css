@@ -1,3 +1,9 @@
+/*
+Colorblind safe color pallette from colorbrewer2.org
+#e5f5f9 - Light Green
+#2ca25f - Dark Green
+*/
+
 body {
   background-color: #e5f5f9;
   color: #2ca25f;
