@@ -51,7 +51,7 @@ var year = today.getFullYear();
 document.writeln("Copyright &copy; " + year);
 </script>
 </div>
-c) #copyright {
+#copyright {
 bottom: 20px;
 margin: 0;
 padding:0;
