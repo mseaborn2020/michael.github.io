@@ -40,17 +40,6 @@ float: left;
   position: relative;
   left: 50px;
 }
-My name is Your Name.<br>
-b) <div id="copyright">
-<script>
-// Comment here.
-var today = new Date();
-// Comment here.
-var year = today.getFullYear();
-// Comment here.
-document.writeln("Copyright &copy; " + year);
-</script>
-</div>
 #copyright {
 bottom: 20px;
 margin: 0;
