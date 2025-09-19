@@ -52,7 +52,7 @@ document.writeln("Copyright &copy; " + year);
 </script>
 </div>
 c) #copyright {
-bottom: 0px;
+bottom: 20px;
 margin: 0;
 padding:0;
 text-align: center;
