@@ -3,7 +3,7 @@ document.getElementById("welcome-heading").textContent ="Hello,Welcome " + user_
 */
 var webmaps =
 [
-  ["Oil Spill Toolkit", "https://www.glo.texas.gov",
+  ["Oil Spill Toolkit" , "https://www.glo.texas.gov",
 "The oil spill toolkit developed by Enterprise Technology Solutions is neat."],
 ["Texas Ecosystems Analytical Mapper", "http://tpwd.texas.gov/gis/team/",
 "The Texas Parks and Wildlife's Landscape Ecology Program is great."]
@@ -19,18 +19,14 @@ function welcome()
 }
 document.write(welcome());
 
-function webmap_table()
-{
-document.write("<table width=100%>");
-for (var row=0; row < webmaps.length; row++)
-{
-document.write("<tr>");
-for (var column=0; column < webmaps[0].length; column++)
-{
-document.write("<td>" + webmaps[row][column] + "</td>");
-}
-document.write("</tr>");
-}
-document.write("</table>");
-return "";
+function webmap_table() {
+  for (var row = 0; row < webmaps.length * 2; row++) {
+    if (row % 2 == 0) {
+      var i = row / 2;
+      document.write("<p><b>" + webmaps[i][0] + "</b> <a href='" + webmaps[i][1] + "'>" + webmaps[i][1] + "</a></p>");
+    } else {
+      var i = (row - 1) / 2;
+      document.write("<p>" + webmaps[i][2] + "</p>");
+    }
+  }
 }
