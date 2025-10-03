@@ -73,6 +73,20 @@ bbox.getSouthWest()
 ]);
 mymap.fitBounds(poly.getBounds());
 }).addTo(mymap);
+var blueIcon = L.icon({iconUrl:'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png'});
+var redIcon = L.icon({iconUrl:'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png'});
+var greenIcon = L.icon({iconUrl:'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png'});
+var orangeIcon = L.icon({iconUrl:'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png'});
+var yellowIcon = L.icon({iconUrl:'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png'});
+var violetIcon = L.icon({iconUrl:'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png'});
+var greyIcon = L.icon({iconUrl:'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-grey.png'});
+var marker = L.marker([27.174961, 78.042385], {icon:blueIcon}).addTo(mymap).bindPopup("<b>Taj Mahal</b><br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Taj-Mahal.jpg/200px-Taj-Mahal.jpg'><br>The Taj Mahal is a mausoleum commissioned by Emporer Shah Jahan in 1631 to honor his wife, Mumtaz Mahal.");
+var marker = L.marker([40.334245, 116.477652], {icon:redIcon}).addTo(mymap).bindPopup("<b>Great Wall of China</b><br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/The_Great_Wall_of_China_at_Jinshanling-edit.jpg/200px-The_Great_Wall_of_China_at_Jinshanling-edit.jpg'><br>The Great Wall of China was constructed in order to protect against invasions and raids from nomadic groups, with origins dating back to 7th Century BCE.");
+var marker = L.marker([30.328611, 35.441944], {icon:greenIcon}).addTo(mymap).bindPopup("<b>Petra</b><br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/View_of_Petra.jpg/200px-View_of_Petra.jpg'><br>Petra is ab anctient archaeological site in Jordan that's famous for its architecture and water systems, and was once a thriving trading hub.");
+var marker = L.marker([-22.951389, -43.2108334], {icon:orangeIcon}).addTo(mymap).bindPopup("<b>Christ the Redeemer</b><br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Christ_the_Redeemer_-_Cristo_Redentor.jpg/250px-Christ_the_Redeemer_-_Cristo_Redentor.jpg'><br>Christ the redeemer is a monumental statue of Jesus Christ located in Rio de Janeiro, Brazil that was completed in 1931.");
+var marker = L.marker([-13.163056, -72.545556], {icon:yellowIcon}).addTo(mymap).bindPopup("<b>Machu Picchu</b><br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Machu_Picchu%2C_Peru.jpg/200px-Machu_Picchu%2C_Peru.jpg'><br>Machu Picchu is a 15th-century Inca citadel located in Peru. It was built around 1450 and apparently served as an estate for the emporer Pachacuti.");
+var marker = L.marker([20.682778, -88.569167], {icon:violetIcon}).addTo(mymap).bindPopup("<b>Chichen Itza</b><br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Chichen_Itza-16.jpg/220px-Chichen_Itza-16.jpg'><br>Chichen Itza is an anctient Mayan city known for its architectural grandeur and cultural significance, which flourished between 600 to 1200 CE.");
+var marker = L.marker([41.890169, 12.492269], {icon:greyIcon}).addTo(mymap).bindPopup("<b>Colosseum</b><br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/200px-Colosseo_2020.jpg'><br>The Colosseum is an ancient Roman amphitheater located in Rome, Italy. It was built under the Flavian emperors of the Roman Empire and was famously used for gladitorial combat.");
 /*
 var marker = L.marker([51.5, -0.09]).addTo(mymap);
 var circle = L.circle([51.508, -0.11], { color: 'red', fillColor: '#f03', fillOpacity: 0.5, radius: 500}).addTo(mymap);
