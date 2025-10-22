@@ -4,15 +4,18 @@
 <meta charset="utf-8" />
 <meta name="viewport" content = "initial-scale=1, maximum-scale=1, user-scalable=no"/>
 <title> Lab 7 Homework </title>
+<!-- ArcGIS CSS styling -->
 <link rel = "stylesheet" href = "https://js.arcgis.com/4.21/esri/themes/light/main.css"/>
+<!-- ArcGIS JavaScript API -->
 <script src = "https://js.arcgis.com/4.21/"> </script>
 <style>
+/* Making sure tgat html, body, and map container fill the viewport fully */
 html, body, #viewDiv {
 padding: 0;
 margin: 0;
 height: 100%;
 width: 100%;}
-/* Position dropdown above map */
+ /* Styles for dropdown menu container */
 .dropdown {
   position: absolute;
   top: 50px;
@@ -20,7 +23,7 @@ width: 100%;}
   z-index: 10;
 }
 
-/* Dropdown Button */
+/* Dropdown Button style */
 .dropbtn {
   background-color: #003366;
   color: white;
@@ -30,7 +33,7 @@ width: 100%;}
   cursor: pointer;
 }
 
-/* Dropdown Content (hidden by default) */
+/* Dropdown Content container */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -48,11 +51,11 @@ width: 100%;}
   display: block;
 }
 
-/* Show the dropdown menu on hover */
+/* Show the dropdown menu when hovering */
 .dropdown:hover .dropdown-content {
   display: block;
 }
-/* Query UI Container */
+/* UI container for query widget */
   #queryDiv {
     position: absolute;
     top: 160px;
@@ -65,17 +68,21 @@ width: 100%;}
     font-family: Arial, sans-serif;
     font-size: 14px;
   }
+  /*query heading */
   #queryDiv h3 {
     margin-top: 0;
   }
+  /*result style */
   #resultCount {
     margin-top: 10px;
     font-weight: bold;
   }
+  /*style for labels, select, input and buttons*/
   label, select, input, button {
     display: block;
     margin-bottom: 8px;
   }
+  /*query button style */
   button {
     background-color: #003366;
     color: white;
@@ -87,50 +94,57 @@ width: 100%;}
   button:hover {
     background-color: #002244;
   }
+  /*title bar style*/
   #titleBar {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #003366; /* dark blue */
+  background-color: #003366;
   color: white;
   text-align: center;
   padding: 10px 0;
   font-family: Arial, sans-serif;
-  z-index: 20; /* higher than dropdown and query box */
+  z-index: 20;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
-
+/*title text style*/
 #titleBar h1 {
   margin: 0;
   font-size: 20px;
 }
+/* moved esri ui elements to avoid overlapping*/
 .esri-ui-top-left {
   top: 60px !important;
 }
+/* moved esri ui elements to avoid overlapping*/
   .esri-ui-top-right {
   top: 90px !important;
 }
+/*footer container styling/fixed to bottom*/
 #footer {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(0, 51, 102, 0.8); /* semi-transparent dark blue */
+  background-color: rgba(0, 51, 102, 0.8);
   color: white;
   text-align: center;
   padding: 10px 0;
   font-family: Arial, sans-serif;
   font-size: 14px;
-  z-index: 20; /* ensures it appears above the map */
+  z-index: 20;
 }
 </style>
 </head>
 <body>
+<!---title bar --->
   <div id="titleBar">
   <h1>Area of States in the U.S</h1>
 </div>
+<!--- container for mapview -->
 <div id="viewDiv"></div>
+<!---dropdown menu with links -->
 <div class="dropdown">
     <button class="dropbtn">Website Links</button>
     <div class="dropdown-content">
@@ -142,36 +156,35 @@ width: 100%;}
         <a href="https://mseaborn2020.github.io/michael.github.io/tile_layer.html" target="_blank">Tile Layer</a>
     </div>
 </div>
-
-  <!-- Query UI -->
+  <!--Query UI-->
   <div id="queryDiv">
     <h3>Census Query</h3>
     <label for="fieldSelect">Field:</label>
+  <!---select field for query-->
     <select id="fieldSelect">
       <option value="Shape__Area">Shape Area</option>
-      <!-- Add more fields here if needed -->
     </select>
-
+<!--- select operator for query -->
     <label for="operatorSelect">Operator:</label>
     <select id="operatorSelect">
       <option value=">">&gt; Greater than</option>
       <option value="<">&lt; Less than</option>
       <option value="=">= Equal to</option>
     </select>
-
+<!---input value-->
     <label for="valueInput">Value:</label>
     <input type="number" id="valueInput" value="1000" />
-
+<!---button to do query-->
     <button id="queryBtn">Run Query</button>
-
+<!--display # of query result-->
     <p id="resultCount"></p>
   </div>
+  <!---require code to add necessary widgets/tasks and TileLayer/FeatureLayer to add world transportation data and US Census data-->
   <script>
   require(["esri/Map", "esri/views/MapView", "esri/layers/TileLayer", "esri/layers/FeatureLayer","esri/layers/GraphicsLayer", "esri/tasks/QueryTask","esri/tasks/support/Query", "esri/widgets/BasemapGallery"], function (Map, MapView, TileLayer, FeatureLayer, GraphicsLayer, QueryTask, Query, BasemapGallery) {
   var TransportationLayer = new TileLayer({
   url: "https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer"
   });
-  // ✅ US Census 2024 Feature Layer
   var CensusLayer = new FeatureLayer({
     url: "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/2024_US_Census/FeatureServer/0",
     renderer: {
@@ -179,15 +192,16 @@ width: 100%;}
       symbol: {
         type: "simple-fill",
         style: "solid",
-        color: [76, 129, 205, 0.75],  // semi-transparent blue
+        color: [76, 129, 205, 0.75],
         outline: {
           type: "simple-line",
           style: "solid",
-          color: [0, 0, 0, 1],        // black outline
+          color: [0, 0, 0, 1],
           width: 0.75
         }
       }
     },
+    //popup template
     popupTemplate: {
        title: "Area Info",
        content: [
@@ -207,90 +221,101 @@ width: 100%;}
        ]
      }
    });
+  //new map view with ocean basemap and transportation, census layers
   var map = new Map({
   basemap: "oceans",
   layers: [TransportationLayer, CensusLayer]
   });
+  //mapview to display map in a container with zoom and center over the US
   var view = new MapView({
   container: "viewDiv",
   map: map,
   zoom: 5,
   center: [-98.5795, 39.8283]
   });
+  //create basemap gallery widget and add it to the top right
   var basemapGallery = new BasemapGallery({
   view: view
 });
 view.ui.add(basemapGallery, {
   position: "top-right"
 });
+//create graphicslayer to hold query results
   var resultsLayer = new GraphicsLayer();
       map.add(resultsLayer);
+//create query task to do queries on census layer
       var qTask = new QueryTask({
         url: "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/2024_US_Census/FeatureServer/0"
       });
+//configure query parameters
       var params = new Query({
         returnGeometry: true,
         outFields: ["*"]
   });
+  //reference "run query" button in the UI
   var queryBtn = document.getElementById("queryBtn");
-
+//add click event listener to the button to run the query
       queryBtn.addEventListener("click", function() {
+//clear previous query results
         resultsLayer.removeAll();
-
+//get selected field,operator,and input value from the UI
         var field = document.getElementById("fieldSelect").value;
         var operator = document.getElementById("operatorSelect").value;
         var value = document.getElementById("valueInput").value;
-
+//validate that value was entered
         if (!value) {
           alert("Please enter a value for the query.");
           return;
         }
-
+//build where cause for the query
         params.where = `${field} ${operator} ${value}`;
-
+//execute query using query task
         qTask.execute(params).then(function(response) {
           var features = response.features;
-
+//if there are no features found, update UI and stop
           if (features.length === 0) {
             document.getElementById("resultCount").textContent = "No features found.";
             return;
           }
-
+//styling selected features with yellow fill and red outline
           features.forEach(function(feature) {
             feature.symbol = {
    type: "simple-fill",
-   color: [255, 255, 0, 0.5],  // yellow with 50% opacity
+   color: [255, 255, 0, 0.5],
    outline: {
-     color: [255, 0, 0, 1],     // red outline
+     color: [255, 0, 0, 1],
      width: 1
    }
  };
+ //setting popup template for clicked features
             feature.popupTemplate = {
               title: "Census Polygon",
               content: `Shape Area: ${feature.attributes.Shape__Area.toFixed(2)}`
             };
           });
-
+//add highlighted features to results graphics layer
           resultsLayer.addMany(features);
-
+//zoom to results
           view.goTo(features, {
-  maxScale: 5000000  // Adjust this as needed
 }).then(() => {
+//open popup
   view.popup.open({
     features: features,
     featureMenuOpen: true,
     updateLocationEnabled: true
   });
 });
-
+//show the number of features found through query
           document.getElementById("resultCount").textContent = features.length + " features found.";
         }).catch(function(error) {
+//report errors in query
           console.error("Query failed: ", error);
           alert("Query failed: " + error.message);
         });
       });
     });
   </script>
+<!--footer fixed at the bottom of teh page-->
   <div id="footer">
   &copy; 2025 Copyright Michael Seaborn. All rights reserved.
 </div>
